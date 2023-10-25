@@ -1,0 +1,3 @@
+log:
+  level: "info"  # 日志级别: trace, debug, info, warn, error, fatal, panic, 只有该级别及其以上的消息才会被记录
+  format: "text" # 日志格式: text or json
