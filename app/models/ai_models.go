@@ -16,19 +16,29 @@ type DetectionRequest struct {
 
 // PestInfo pest_info表中的数据实体
 type PestInfo struct {
-	ID              int       `gorm:"primaryKey;column:id" json:"id"`                  // 病虫害类型编号
-	PestName        string    `gorm:"column:pest_name" json:"pest_name"`               // 病虫害名称
-	PestDescription string    `gorm:"column:pest_description" json:"pest_description"` // 病虫害描述
-	PestPrevention  string    `gorm:"column:pest_prevention" json:"pest_prevention"`   // 病虫害防治方法
-	PestImage       string    `gorm:"column:pest_image" json:"pest_image"`             // 病虫害图片
+	ID              int       `gorm:"primaryKey;column:id" json:"id"`                     // 病虫害类型编号
+	PestName        string    `gorm:"column:pest_name" json:"pest_name"`                  // 病虫害名称
+	PestDescription string    `gorm:"column:pest_description" json:"pest_description"`    // 病虫害描述
+	PestPrevention  string    `gorm:"column:pest_prevention" json:"pest_prevention"`      // 病虫害防治方法
+	PestImage       string    `gorm:"column:pest_image" json:"pest_image"`                // 病虫害图片
 	CreatedAt       time.Time `gorm:"autoCreateTime;column:created_at" json:"created_at"` // 创建时间
 	UpdatedAt       time.Time `gorm:"autoUpdateTime;column:updated_at" json:"updated_at"` // 更新时间
 }
 
+// TableName 设置表名为pest_info
+func (PestInfo) TableName() string {
+	return "pest_info"
+}
+
 // DetectionInfo detection_info表中的数据实体
 type DetectionInfo struct {
-	ID              int       `gorm:"primaryKey;column:id" json:"id"`                  // 检测信息编号
+	ID int `gorm:"primaryKey;column:id" json:"id"` // 检测信息编号
 	DetectionRequest
-	CreatedAt       time.Time `gorm:"autoCreateTime;column:created_at" json:"created_at"` // 创建时间
-	UpdatedAt       time.Time `gorm:"autoUpdateTime;column:updated_at" json:"updated_at"` // 更新时间
+	CreatedAt time.Time `gorm:"autoCreateTime;column:created_at" json:"created_at"` // 创建时间
+	UpdatedAt time.Time `gorm:"autoUpdateTime;column:updated_at" json:"updated_at"` // 更新时间
+}
+
+// TableName 设置表名为detection_info
+func (DetectionInfo) TableName() string {
+	return "detection_info"
 }
